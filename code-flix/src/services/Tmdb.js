@@ -8,7 +8,7 @@ const funcFetch = async(endpoint)=>{
 }
 
 export default{
-    getHomeList: ()=>{ 
+    getHomeList: async ()=>{ 
         return[
             {
                 slug:'originals',
@@ -18,38 +18,41 @@ export default{
             {
                 slug:'trending',
                 title:'Recomendados para Você',
-                items: await funcFetch(`/trending/all/?with_network=213&language=pt-BR&api_key=${api_key}`)
+                items: await funcFetch(`/trending/all/week?language=pt-BR&api_key=${api_key}`)
 
             },
             {
                 slug:'top-rated',
                 title:'Em Alta',
-                items:[],
+                items: await funcFetch(`/movie/top_rated?language=pt-BR&api_key=${api_key}`)
             },
             {
                 slug:'action',
                 title:'Ação',
-                items:[],
+                items: await funcFetch(`/discover/movie?with_genres=28?language=pt-BR&api_key=${api_key}`),
             },
             {
                 slug:'adventure',
                 title:'Aventura',
-                items:[],
+                items: await funcFetch(`/discover/movie?with_genres=12?language=pt-BR&api_key=${api_key}`),
             },
             {
                 slug:'documentary',
                 title:'Documentário',
-                items:[],
+                items: await funcFetch(`/discover/movie?with_genres=99?language=pt-BR&api_key=${api_key}`),
+                
             },
             {
                 slug:'animation',
                 title:'Animação',
-                items:[],
+                items: await funcFetch(`/discover/movie?with_genres=16?language=pt-BR&api_key=${api_key}`),
+
             },
             {
                 slug:'drama',
                 title:'Drama',
-                items:[],
+                items: await funcFetch(`/discover/movie?with_genres=18?language=pt-BR&api_key=${api_key}`),
+
             },
         ]
     }
